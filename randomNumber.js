@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
-
   const minNumber = document.getElementById('minNumber'),
         maxNumber = document.getElementById('maxNumber'),
         startBtn = document.getElementById('start'),
@@ -60,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }else {
-      output.textContent = 'Заполните диапозон чисел';
+      output.textContent = 'Числа закончились :(';
     }
 
   });
