@@ -6,12 +6,31 @@
   <title>Document</title>
 
   <style>
+    body {
+      font-family: sans-serif;
+    }
     .wrapper > * {
       display: block;
       margin-bottom: 10px;
     }
     #output {
       font-size: 32px;
+    }
+    .loto {
+      padding: 10px;
+      border: 1px solid rgb(255, 208, 0);
+      width: max-content;
+    }
+    .result {
+      margin: 10px 0;
+    }
+    .result span {
+      display: block;
+      max-width: 300px;
+      word-break: break-all;
+    }
+    .output {
+      padding: 10px 0;
     }
   </style>
 </head>
@@ -21,7 +40,6 @@
     <input autocomplete="off" id="minNumber" type="text" placeholder="От">
     <input autocomplete="off" id="maxNumber" type="text" placeholder="До (включительно)">
     <input id="exclude" type="text" autocomplete="off" placeholder="Исключить из диапазона">
-    <span id="winNumber"></span>
     <div>
       <button id="setRangeNumber">Установить диапазон чисел</button>
       <button id="reset">Сбросить</button>
@@ -32,6 +50,10 @@
     <button disabled id="start">Старт</button>
 
     <div id="output"></div>
+    <div class="result">
+      <span>Номера победителей:</span>
+      <span id="winNumber"></span>
+    </div>
   </div>
 
   <script src="./randomNumber.js"></script>
