@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .wrapper > * {
+      display: block;
+      margin-bottom: 10px;
+    }
+    #output {
+      font-size: 32px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="wrapper">
+    <input autocomplete="off" id="minNumber" type="text" placeholder="От">
+    <input autocomplete="off" id="maxNumber" type="text" placeholder="До (включительно)">
+    <input id="exclude" type="text" autocomplete="off" placeholder="Исключить из диапазона">
+    <span id="winNumber"></span>
+    <div>
+      <button id="setRangeNumber">Установить диапазон чисел</button>
+      <button id="reset">Сбросить</button>
+    </div>
+  </div>
+
+  <div class="loto">
+    <button disabled id="start">Старт</button>
+
+    <div id="output"></div>
+  </div>
+
+  <script src="./randomNumber.js"></script>
+</body>
+</html>
