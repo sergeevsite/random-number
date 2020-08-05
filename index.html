@@ -9,7 +9,7 @@
     body {
       font-family: sans-serif;
     }
-    .wrapper > * {
+    .options > * {
       display: block;
       margin-bottom: 10px;
     }
@@ -30,29 +30,52 @@
       max-width: 200px;
       word-break: break-all;
     }
+    .drum__list {
+      height: 300px;
+      overflow: hidden;
+    }
+    .drum__item { 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+      width: 300px;
+      background: rgb(255, 208, 105);
+      border-top: #383838;
+    }
+    .drum__item span{
+      font-size: 98px;
+      color: #383838;
+    }
+
   </style>
 </head>
 <body>
+  <main>
+    <div class="options">
+      <input autocomplete="off" id="minNumber" type="text" placeholder="От">
+      <input autocomplete="off" id="maxNumber" type="text" placeholder="До (включительно)">
+      <input id="exclude" type="text" autocomplete="off" placeholder="Исключить из диапазона">
+      <div>
+        <button id="setRangeNumber">Установить диапазон чисел</button>
+        <button id="reset">Сбросить</button>
+      </div>
+    </div>
   
-  <div class="wrapper">
-    <input autocomplete="off" id="minNumber" type="text" placeholder="От">
-    <input autocomplete="off" id="maxNumber" type="text" placeholder="До (включительно)">
-    <input id="exclude" type="text" autocomplete="off" placeholder="Исключить из диапазона">
-    <div>
-      <button id="setRangeNumber">Установить диапазон чисел</button>
-      <button id="reset">Сбросить</button>
+    <div class="loto">
+      <button disabled id="start">Старт</button>
+  
+      <div id="output"></div>
+      <div class="result">
+        <span>Номера победителей:</span>
+        <span id="winNumber"></span>
+      </div>
     </div>
-  </div>
 
-  <div class="loto">
-    <button disabled id="start">Старт</button>
-
-    <div id="output"></div>
-    <div class="result">
-      <span>Номера победителей:</span>
-      <span id="winNumber"></span>
+    <div class="drum__list">
+      <div class="drum__wrapper"></div>
     </div>
-  </div>
+  </main>
 
   <script src="./randomNumber.js"></script>
 </body>
