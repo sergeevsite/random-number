@@ -90,7 +90,6 @@
 			p.topPosition += speed_;
 			if (p.topPosition >= p.totalHeight) {
 				p.topPosition = p.topPosition - p.totalHeight;
-				console.log(p.topPosition)
 			}
 			// TODO IE
 			if (p.isIE) {

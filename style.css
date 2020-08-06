@@ -20,6 +20,9 @@ body {
 .result {
   margin: 10px 0;
   color: #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .result span {
   display: block;
@@ -101,7 +104,11 @@ input:disabled{
   width: 100%;
   background: rgb(170, 87, 87);
 }
-
+.options__button--exc {
+  margin: 10px 0;
+  font-size: 14px;
+  background: rgb(197, 149, 109);
+}
 
 .loto {
   height: 100vh;
@@ -120,7 +127,7 @@ input:disabled{
   background: linear-gradient(180deg, #FF7A00 0%, #FFA24E 100%);
 }
 .loto__button--start:disabled {
-  opacity: 0.5;
+  background: linear-gradient(180deg, #ffbf83 0%, #ffd7b4 100%);
 }
 
 .loto__button--start:active {
@@ -158,4 +165,16 @@ input:disabled{
   background: linear-gradient(0deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 15%, rgba(255,255,255,0) 85%, rgba(255,255,255,0.9) 100%);
   width: 100%;
   height: 100%;
+}
+.winnerBg {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./wiinbg.gif');
+}
+.winnerBg.active {
+  display: block;
 }

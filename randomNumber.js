@@ -17,29 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  let animate = ({duration, draw, timing}) => {
+  // let animate = ({duration, draw, timing}) => {
 
-    let start = performance.now();
+  //   let start = performance.now();
     
-    requestAnimationFrame(function animate(time) {
-      let timeFraction = (time - start) / duration;
-      let progress;
+  //   requestAnimationFrame(function animate(time) {
+  //     let timeFraction = (time - start) / duration;
+  //     let progress;
 
-      if(timeFraction < 0.7) {
-        progress = timing(2 * timeFraction);
-      } else if(timeFraction > 0.7) {
-        progress = timing(timeFraction);
-        // progress = (2 - timing(2 * (1 - timeFraction))) / 2;
-      }
+  //     if(timeFraction < 0.7) {
+  //       progress = timing(2 * timeFraction);
+  //     } else if(timeFraction > 0.7) {
+  //       progress = timing(timeFraction);
+  //       // progress = (2 - timing(2 * (1 - timeFraction))) / 2;
+  //     }
 
-      draw(progress, timeFraction);
+  //     draw(progress, timeFraction);
   
-      if (timeFraction < 1) {
-        requestAnimationFrame(animate);
-      }
+  //     if (timeFraction < 1) {
+  //       requestAnimationFrame(animate);
+  //     }
   
-    });
-  }
+  //   });
+  // }
 
     
   const minNumber = document.getElementById('minNumber'),
@@ -50,7 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         reset = document.getElementById('reset'),
         exclude = document.getElementById('exclude'),
         winNumber = document.getElementById('winNumber'),
-        drumWrapper = document.querySelector('.drum__wrapper');
+        drumWrapper = document.querySelector('.drum__wrapper'),
+        resetAll = document.getElementById('resetAll'),
+        addWinNumber = document.getElementById('addWinNumber'),
+        numberWinnersValue = document.getElementById('numberWinnersValue'),
+        speedValue = document.getElementById('speedValue'),
+        durValue = document.getElementById('durValue');
+
   let rangeData = [],
       randNum,
       rouletter,
@@ -59,23 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       options = {
-        speed : 600,
-        duration : 3,
+        speed : 1000,
+        duration : 0.01,
         stopImageNumber : 0,
         startCallback : function() {
-          console.log('start');
+          startBtn.setAttribute('disabled', 'true');
         },
+
         slowDownCallback : function() {
-          console.log('slowdown');
+
         },
         stopCallback : function() {
-          console.log('stop');
+          startBtn.removeAttribute('disabled');
+          document.querySelector('.winnerBg').classList.add('active');
+          setTimeout(() => {
+            document.querySelector('.winnerBg').classList.remove('active');
+          }, 10000)
         }
       }
 
       if(localStorage.getItem('winNumber') !== null) {
         winNumber.textContent = localStorage.getItem('winNumber');
-      }    
+      }
 
   // Добавление диапозона чисел
   const setData = (min, max) => {
@@ -100,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rouletter = $('div.drum__wrapper');
     rouletter.roulette(options);
   }
+
 
   // Слушатели
   setRangeNumber.addEventListener('click', () => {
@@ -179,7 +191,25 @@ document.addEventListener('DOMContentLoaded', () => {
     minNumber.value = '';
     maxNumber.value = '';
     // output.textContent = '';
-    drumWrapper.innerHTML = '';
+    // drumWrapper.innerHTML = '';
+    exclude.value = '';
+  });
+
+  resetAll.addEventListener('click', () => {
+    rangeData = [];
+    isDisabled(minNumber, maxNumber, setRangeNumber);
+    minNumber.value = '';
+    maxNumber.value = '';
+    // output.textContent = '';
+    // drumWrapper.innerHTML = '';
+    localStorage.removeItem('winNumber');
+    exclude.value = '';
+    winNumber.textContent = '';
+  })
+
+
+  addWinNumber.addEventListener('click', () => {
+    exclude.value = winNumber.textContent;
   });
 
   $('.options').hide();

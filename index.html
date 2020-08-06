@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="winnerBg"></div>
   <main>
     <div class="options__wrapper">
       <button id="toggleOptions" class="options__button">Опции</button>
@@ -15,13 +16,19 @@
         <input autocomplete="off" id="minNumber" type="text" placeholder="От">
         <input autocomplete="off" id="maxNumber" type="text" placeholder="До (включительно)">
         <input id="exclude" type="text" autocomplete="off" placeholder="Исключить из диапазона">
+
+        <input autocomplete="off" value="1000" id="speedValue" type="text" placeholder="Скорость">
+        <input autocomplete="off" value="0.01" id="durValue" type="text" placeholder="Продолжительность">
+
         <div>
           <button class="options__button--set" id="setRangeNumber">Установить диапазон чисел</button>
-          <button class="options__button--reset" id="reset">Сбросить</button>
+          <button class="options__button--reset" id="reset">Сбросить значения</button>
+          <button class="options__button--reset" id="resetAll">Сбросить все</button>
         </div>
         <div class="result">
           <span>Номера победителей:</span>
           <span id="winNumber"></span>
+          <button id="addWinNumber" class="options__button--exc">Исключить</button>
         </div>
       </div>
     </div>
