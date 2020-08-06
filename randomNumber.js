@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
+    
   const minNumber = document.getElementById('minNumber'),
         maxNumber = document.getElementById('maxNumber'),
         startBtn = document.getElementById('start'),
@@ -51,7 +51,26 @@ document.addEventListener('DOMContentLoaded', () => {
         winNumber = document.getElementById('winNumber'),
         drumWrapper = document.querySelector('.drum__wrapper');
   let rangeData = [],
-      randNum;
+      randNum,
+      rouletter,
+      options,
+      indexNumber;
+
+
+      options = {
+        speed : 600,
+        duration : 3,
+        stopImageNumber : 0,
+        startCallback : function() {
+          console.log('start');
+        },
+        slowDownCallback : function() {
+          console.log('slowdown');
+        },
+        stopCallback : function() {
+          console.log('stop');
+        }
+      }
 
   // Добавление диапозона чисел
   const setData = (min, max) => {
@@ -71,6 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
       drumItem.insertAdjacentElement('beforeend', number);
     });
 
+    $('.options').slideUp();
+
+    rouletter = $('div.drum__wrapper');
+    rouletter.roulette(options);
   }
 
   // Слушатели
@@ -85,6 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
   });
 
+  const updateParamater = (index) => {
+    options['stopImageNumber'] = index;
+    rouletter.roulette('option', options);
+  }
+
   // Выборка чисел
   startBtn.addEventListener('click', () => {
 
@@ -93,54 +121,35 @@ document.addEventListener('DOMContentLoaded', () => {
       rangeData.forEach((num, i) => {
 
         if(randNum === i) {
-          output.textContent = rangeData[i];
+          // output.textContent = rangeData[i];
           winNumber.textContent += rangeData[i] + ',';
           rangeData.splice(i, 1);
-
-          drumWrapper.childNodes.forEach((item) => {
-            if(num === +item.dataset.id) {
-              let s = item.getBoundingClientRect().top - item.parentNode.getBoundingClientRect().top;
-
-              animate({
-                duration: 10000,
-                timing(timeFraction) {
-                  return timeFraction;
-                  // if(timeFraction <= 0.7) {
-                  //   return timeFraction * 2;
-                  // } else {
-                  //   return timeFraction;
-                  // }
-                },
-                draw(progress, timeFraction) {
-                  if(timeFraction < 0.7) {
-                    if(progress > 0.8) {
-                      drumWrapper.style.transform = `translateY(-${(progress * (drumWrapper.getBoundingClientRect().height - 2000)) / 2}px)`;
-                    } else {
-                      drumWrapper.style.transform = `translateY(-${progress * drumWrapper.getBoundingClientRect().height}px)`;
-                    }
-                  } else {
-                    drumWrapper.style.transform = `translateY(-${progress * s}px)`;
-                  }
-                  // if(progress < 1) {
-                  //   drumWrapper.style.transform = `translateY(-${progress * drumWrapper.getBoundingClientRect().height}px)`;
-                  // } else {
-                  //   drumWrapper.style.transform = `translateY(-${progress * s}px)`;
-                  // }
-                }
-              });
-
-            }
-          });
+          if(drumWrapper.childNodes[0].childNodes.length > 0) {
+            drumWrapper.childNodes[0].childNodes.forEach((item, ind) => {
+              if(num === +item.dataset.id) {
+                indexNumber = ind;
+              }
+            });
+          } else {
+            drumWrapper.childNodes.forEach((item, ind) => {
+              if(num === +item.dataset.id) {
+                indexNumber = ind;
+              }
+            });
+          }
         }
-        
       });
 
+      updateParamater(indexNumber);
+      rouletter.roulette('start');
     }else {
-      output.textContent = 'Числа закончились :(';
+      console.error('Числа закончились :(';)
+      // output.textContent = 'Числа закончились :(';
     }
 
   });
   
+
   // Случайный индекс
   const getRundomNumber = (min) => {
     let n = Math.floor(Math.random() * (rangeData.length - min) + min)
@@ -164,9 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
     isDisabled(minNumber, maxNumber, setRangeNumber);
     minNumber.value = '';
     maxNumber.value = '';
-    output.textContent = '';
+    // output.textContent = '';
     drumWrapper.innerHTML = '';
   });
-    
+
+  $('.options').hide();
+  $('#toggleOptions').on('click', () => {
+    $('.options').slideToggle()
+  })
+
 
 });

@@ -4,79 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-
-  <style>
-    body {
-      font-family: sans-serif;
-    }
-    .options > * {
-      display: block;
-      margin-bottom: 10px;
-    }
-    #output {
-      font-size: 32px;
-      padding: 10px 0;
-    }
-    .loto {
-      padding: 10px;
-      border: 1px solid rgb(255, 208, 0);
-      width: max-content;
-    }
-    .result {
-      margin: 10px 0;
-    }
-    .result span {
-      display: block;
-      max-width: 200px;
-      word-break: break-all;
-    }
-    .drum__list {
-      height: 300px;
-      overflow: hidden;
-    }
-    .drum__item { 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 300px;
-      width: 300px;
-      background: rgb(255, 208, 105);
-      border-top: #383838;
-    }
-    .drum__item span{
-      font-size: 98px;
-      color: #383838;
-    }
-
-  </style>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <main>
-    <div class="options">
-      <input autocomplete="off" id="minNumber" type="text" placeholder="От">
-      <input autocomplete="off" id="maxNumber" type="text" placeholder="До (включительно)">
-      <input id="exclude" type="text" autocomplete="off" placeholder="Исключить из диапазона">
-      <div>
-        <button id="setRangeNumber">Установить диапазон чисел</button>
-        <button id="reset">Сбросить</button>
+    <div class="options__wrapper">
+      <button id="toggleOptions" class="options__button">Опции</button>
+      <div class="options">
+        <input autocomplete="off" id="minNumber" type="text" placeholder="От">
+        <input autocomplete="off" id="maxNumber" type="text" placeholder="До (включительно)">
+        <input id="exclude" type="text" autocomplete="off" placeholder="Исключить из диапазона">
+        <div>
+          <button class="options__button--set" id="setRangeNumber">Установить диапазон чисел</button>
+          <button class="options__button--reset" id="reset">Сбросить</button>
+        </div>
+        <div class="result">
+          <span>Номера победителей:</span>
+          <span id="winNumber"></span>
+        </div>
       </div>
     </div>
   
     <div class="loto">
-      <button disabled id="start">Старт</button>
-  
-      <div id="output"></div>
-      <div class="result">
-        <span>Номера победителей:</span>
-        <span id="winNumber"></span>
+      <div class="drum__list">
+        <div class="drum__wrapper"></div>
       </div>
+
+      <button disabled class="loto__button--start" id="start">Старт</button>
+
     </div>
 
-    <div class="drum__list">
-      <div class="drum__wrapper"></div>
-    </div>
+
   </main>
 
+  <script src="./jquery-3.4.1.min.js"></script>
+  <script src="./roulette.js"></script>
   <script src="./randomNumber.js"></script>
 </body>
 </html>
