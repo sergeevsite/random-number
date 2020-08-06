@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       options = {
-        speed : 1000,
-        duration : 0.01,
+        speed : speedValue.value,
+        duration : durValue.value,
         stopImageNumber : 0,
         startCallback : function() {
           startBtn.setAttribute('disabled', 'true');
@@ -88,6 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
         winNumber.textContent = localStorage.getItem('winNumber');
       }
 
+
+      speedValue.addEventListener('input', () => {
+        options['speed'] = speedValue.value;
+        rouletter.roulette('option', options);
+      })
+      durValue.addEventListener('input', () => {
+        options['duration'] = durValue.value;
+        rouletter.roulette('option', options);
+      })
   // Добавление диапозона чисел
   const setData = (min, max) => {
     // rangeData = [];
@@ -118,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(isNumber(minNumber.value) && minNumber !== '' && isNumber(maxNumber.value) && maxNumber !== '') {
       setData(+minNumber.value, +maxNumber.value);
       startBtn.removeAttribute('disabled');
-      isDisabled(minNumber, maxNumber, setRangeNumber);
+      // isDisabled(minNumber, maxNumber, setRangeNumber);
     }
 
     excludeNumber(exclude.value);
@@ -129,6 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
     options['stopImageNumber'] = index;
     rouletter.roulette('option', options);
   }
+
+
 
   // Выборка чисел
   startBtn.addEventListener('click', () => {
@@ -201,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     minNumber.value = '';
     maxNumber.value = '';
     // output.textContent = '';
-    // drumWrapper.innerHTML = '';
+    drumWrapper.innerHTML = '';
     localStorage.removeItem('winNumber');
     exclude.value = '';
     winNumber.textContent = '';
