@@ -19,14 +19,13 @@ body {
 } */
 .result {
   margin: 10px 0;
+  color: #ccc;
 }
 .result span {
   display: block;
   max-width: 200px;
   word-break: break-all;
 }
-
-
 
 button {
   font-family: 'Open Sans', sans-serif;

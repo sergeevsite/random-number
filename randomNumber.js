@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+
   let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   };
@@ -72,6 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      if(localStorage.getItem('winNumber') !== null) {
+        winNumber.textContent = localStorage.getItem('winNumber');
+      }    
+
   // Добавление диапозона чисел
   const setData = (min, max) => {
     // rangeData = [];
@@ -123,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(randNum === i) {
           // output.textContent = rangeData[i];
           winNumber.textContent += rangeData[i] + ',';
+          localStorage.setItem('winNumber', winNumber.textContent);
           rangeData.splice(i, 1);
           if(drumWrapper.childNodes[0].childNodes.length > 0) {
             drumWrapper.childNodes[0].childNodes.forEach((item, ind) => {
@@ -143,13 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
       updateParamater(indexNumber);
       rouletter.roulette('start');
     }else {
-      console.error('Числа закончились :(';)
+      console.error('Числа закончились :(');
       // output.textContent = 'Числа закончились :(';
     }
 
   });
   
-
   // Случайный индекс
   const getRundomNumber = (min) => {
     let n = Math.floor(Math.random() * (rangeData.length - min) + min)
