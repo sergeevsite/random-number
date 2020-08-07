@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Сброс
   reset.addEventListener('click', () => {
     rangeData = [];
-    isDisabled(minNumber, maxNumber, setRangeNumber);
+    // isDisabled(minNumber, maxNumber, setRangeNumber);
     minNumber.value = '';
     maxNumber.value = '';
     // output.textContent = '';
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   resetAll.addEventListener('click', () => {
     rangeData = [];
-    isDisabled(minNumber, maxNumber, setRangeNumber);
+    // isDisabled(minNumber, maxNumber, setRangeNumber);
     minNumber.value = '';
     maxNumber.value = '';
     // output.textContent = '';
