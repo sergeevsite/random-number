@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('winNumber');
     exclude.value = '';
     winNumber.textContent = '';
+    window.location.reload();
   })
 
 
