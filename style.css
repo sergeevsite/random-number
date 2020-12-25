@@ -189,3 +189,23 @@ input:disabled{
 .info ol {
   padding: 0;
 }
+.mode {
+  margin-top: 10px;
+}
+.mode span{
+  color: #4f4f4f;
+}
+.mode ul{
+  margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+}
+.mode ul li{
+  display: inline;
+}
+.mode ul li button{
+  font-size: 14px;
+  margin: 5px;
+}

@@ -235,6 +235,4 @@ document.addEventListener('DOMContentLoaded', () => {
   $('#toggleOptions').on('click', () => {
     $('.options').slideToggle()
   })
-
-
 });
