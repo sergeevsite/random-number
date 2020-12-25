@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         winNumber = document.getElementById('winNumber'),
         drumWrapper = document.querySelector('.drum__wrapper'),
         resetAll = document.getElementById('resetAll'),
+        resetList = document.getElementById('resetList'),
         addWinNumber = document.getElementById('addWinNumber'),
         numberWinnersValue = document.getElementById('numberWinnersValue'),
         speedValue = document.getElementById('speedValue'),
@@ -213,8 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
     maxNumber.value = '';
     // output.textContent = '';
     drumWrapper.innerHTML = '';
-    localStorage.removeItem('winNumber');
+    // localStorage.removeItem('winNumber');
     exclude.value = '';
+    // winNumber.textContent = '';
+    window.location.reload();
+  })
+
+  resetList.addEventListener('click', () => {
+    localStorage.removeItem('winNumber');
     winNumber.textContent = '';
     window.location.reload();
   })
@@ -224,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     exclude.value = winNumber.textContent;
   });
 
-  $('.options').hide();
+  // $('.options').hide();
   $('#toggleOptions').on('click', () => {
     $('.options').slideToggle()
   })

@@ -99,14 +99,14 @@ input:disabled{
   background: rgb(87, 170, 122);
 }
 .options__button--reset {
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 10px;
   width: 100%;
   background: rgb(170, 87, 87);
 }
 .options__button--exc {
   margin: 10px 0;
-  font-size: 14px;
+  font-size: 12px;
   background: rgb(197, 149, 109);
 }
 
@@ -178,4 +178,14 @@ input:disabled{
 }
 .winnerBg.active {
   display: block;
+}
+.info {
+  font-size: 12px;
+  color: #b1b1b1;
+}
+.info:hover {
+  color: #4f4f4f
+}
+.info ol {
+  padding: 0;
 }
